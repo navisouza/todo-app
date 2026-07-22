@@ -1,0 +1,23 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+*.sqlite3
+.env
+staticfiles/
+media/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node / React (Dia 3)
+node_modules/
+dist/
+build/
+
+# Ambiente
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
