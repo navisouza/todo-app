@@ -1,0 +1,15 @@
+services:
+  backend:
+    build:
+      context: ./BACKEND
+    container_name: todo-backend
+    environment:
+      - DATABASE_PATH=/app/data/db.sqlite3
+    volumes:
+      - backend_data:/app/data
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+volumes:
+  backend_data:
