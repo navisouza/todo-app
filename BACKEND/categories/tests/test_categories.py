@@ -23,7 +23,7 @@ class TestCategoryCRUD:
 
         response = auth_client.get(self.list_url)
 
-        names = [c["name"] for c in response.data["results"]]
+        names = [c["name"] for c in response.data]
         assert names == ["Minha"]
 
     def test_update_category(self, auth_client, user):
