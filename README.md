@@ -49,7 +49,6 @@ Primeiro acesso: crie uma conta em `/register`, depois já cai direto na tela de
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-cp .env.example .env      # se existir, ou ver seção de variáveis abaixo
 python manage.py migrate
 python manage.py runserver
 ```
@@ -69,6 +68,18 @@ O front espera a API em `http://localhost:8000/api` (configurado em `src/api/cli
 cd BACKEND
 pytest -v
 ```
+
+### Rodando os testes end-to-end (Selenium)
+
+Testam o fluxo real no navegador: cadastro, login, criação/conclusão/exclusão de tarefa e criação de categoria. Precisam da aplicação rodando (via `docker compose up` ou `npm run dev` + `manage.py runserver`) e de um Chrome instalado — o próprio Selenium (Selenium Manager) resolve o chromedriver certo automaticamente.
+
+```bash
+cd e2e
+pip install -r requirements.txt
+pytest -v
+```
+
+Por padrão apontam pra `http://localhost:5173`; pra testar outra URL, define `E2E_BASE_URL` antes de rodar.
 
 ## Variáveis de ambiente (backend)
 
@@ -99,6 +110,8 @@ todo-app/
 │   │   ├── pages/        # Login, Registro, Tarefas
 │   │   └── theme.ts      # paleta de cor customizada
 │   └── Dockerfile
+├── e2e/                  # testes end-to-end (Selenium + pytest)
+├── .github/workflows/    # CI
 └── docker-compose.yml
 ```
 
@@ -118,10 +131,9 @@ Cada app do Django segue o mesmo padrão interno: `models.py` → `serializers.p
 
 ## Próximos passos
 
-- Testes automatizados no front-end (Selenium), complementando a cobertura de pytest já existente no back.
 - Mover o JWT para cookie `httpOnly` com SameSite configurado, reduzindo a superfície de exposição a XSS.
 - Estender o tema "Cute" para bordas e tipografia, além da paleta de cor.
-- Pipeline de CI/CD.
+- Rodar os testes end-to-end também no CI (hoje o pipeline cobre pytest e lint/build do front; o Selenium fica de fora porque exige a aplicação rodando com Chrome disponível no runner).
 
 ## Stack
 
@@ -129,4 +141,6 @@ Backend: Django 6 + Django REST Framework, `djangorestframework-simplejwt`, `dja
 
 Frontend: React 19 + TypeScript, Vite, Chakra UI v3, React Router, axios.
 
-Infra: Docker + Docker Compose (Nginx servindo o build do front, Gunicorn rodando o back).
+Testes end-to-end: Selenium + pytest.
+
+Infra: Docker + Docker Compose (Nginx servindo o build do front, Gunicorn rodando o back), GitHub Actions (CI).
