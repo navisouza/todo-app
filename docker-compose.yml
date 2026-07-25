@@ -11,5 +11,15 @@ services:
       - "8000:8000"
     restart: unless-stopped
 
+  frontend:
+    build:
+      context: ./FRONTEND
+    container_name: todo-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
 volumes:
   backend_data:
