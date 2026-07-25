@@ -111,6 +111,7 @@ export function TaskFormDialog({
                   <Field.Root required>
                     <Field.Label>Título</Field.Label>
                     <Input
+                      data-testid="task-title-input"
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
                       autoFocus
@@ -181,6 +182,7 @@ export function TaskFormDialog({
                   Cancelar
                 </Button>
                 <Button
+                  data-testid="task-save-button"
                   type="submit"
                   colorPalette={colorPalette}
                   loading={isSubmitting}

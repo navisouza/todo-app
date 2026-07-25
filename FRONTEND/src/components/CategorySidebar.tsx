@@ -151,13 +151,20 @@ export function CategorySidebar({
       <form onSubmit={handleCreate}>
         <HStack>
           <Input
+            data-testid="new-category-input"
             size="sm"
             variant="subtle"
             placeholder="Nova categoria"
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
           />
-          <IconButton size="sm" colorPalette={colorPalette} type="submit" aria-label="Adicionar categoria">
+          <IconButton
+            data-testid="new-category-submit"
+            size="sm"
+            colorPalette={colorPalette}
+            type="submit"
+            aria-label="Adicionar categoria"
+          >
             <LuPlus />
           </IconButton>
         </HStack>

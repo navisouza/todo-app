@@ -234,7 +234,12 @@ export default function TasksPage() {
             <ColorModeButton />
           </HStack>
 
-          <Button size="sm" variant="ghost" onClick={logout}>
+          <Button
+            data-testid="logout-button"
+            size="sm"
+            variant="ghost"
+            onClick={logout}
+          >
             <LuLogOut /> Sair
           </Button>
         </HStack>
@@ -287,7 +292,11 @@ export default function TasksPage() {
 
             <Spacer />
 
-            <Button colorPalette={colorPalette} onClick={openCreateForm}>
+            <Button
+              data-testid="new-task-button"
+              colorPalette={colorPalette}
+              onClick={openCreateForm}
+            >
               <LuPlus /> Nova tarefa
             </Button>
           </HStack>

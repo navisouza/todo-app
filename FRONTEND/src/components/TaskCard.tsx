@@ -44,6 +44,7 @@ export function TaskCard({
 
   return (
     <Box
+      data-testid={`task-card-${task.id}`}
       bg="white"
       _dark={{ bg: "gray.800" }}
       borderRadius="xl"
@@ -56,6 +57,7 @@ export function TaskCard({
       <HStack align="start" gap="3">
         <Box pt="1">
           <Checkbox.Root
+            data-testid="task-checkbox"
             checked={task.is_completed}
             colorPalette={isOwner ? undefined : "purple"}
             onCheckedChange={() => onToggleComplete(task.id)}
@@ -67,6 +69,7 @@ export function TaskCard({
 
         <Stack gap="1.5" flex="1">
           <Text
+            data-testid="task-title"
             textDecoration={task.is_completed ? "line-through" : "none"}
             fontWeight="semibold"
           >

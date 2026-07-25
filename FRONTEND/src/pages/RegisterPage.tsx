@@ -63,6 +63,7 @@ export default function RegisterPage() {
           <Field.Root required>
             <Field.Label>Usuário</Field.Label>
             <Input
+              data-testid="register-username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -71,6 +72,7 @@ export default function RegisterPage() {
           <Field.Root required>
             <Field.Label>Email</Field.Label>
             <Input
+              data-testid="register-email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -80,6 +82,7 @@ export default function RegisterPage() {
           <Field.Root required>
             <Field.Label>Senha</Field.Label>
             <Input
+              data-testid="register-password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -89,6 +92,7 @@ export default function RegisterPage() {
           <Field.Root required>
             <Field.Label>Confirmar senha</Field.Label>
             <Input
+              data-testid="register-password-confirm"
               type="password"
               value={passwordConfirm}
               onChange={(e) => setPasswordConfirm(e.target.value)}
@@ -97,7 +101,12 @@ export default function RegisterPage() {
 
           {error && <Text color="red.500">{error}</Text>}
 
-          <Button type="submit" colorPalette={colorPalette} loading={isSubmitting}>
+          <Button
+            data-testid="register-submit"
+            type="submit"
+            colorPalette={colorPalette}
+            loading={isSubmitting}
+          >
             Criar conta
           </Button>
 

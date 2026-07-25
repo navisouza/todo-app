@@ -54,6 +54,7 @@ export default function LoginPage() {
           <Field.Root required>
             <Field.Label>Usuário</Field.Label>
             <Input
+              data-testid="login-username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -62,6 +63,7 @@ export default function LoginPage() {
           <Field.Root required>
             <Field.Label>Senha</Field.Label>
             <Input
+              data-testid="login-password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -70,7 +72,12 @@ export default function LoginPage() {
 
           {error && <Text color="red.500">{error}</Text>}
 
-          <Button type="submit" colorPalette={colorPalette} loading={isSubmitting}>
+          <Button
+            data-testid="login-submit"
+            type="submit"
+            colorPalette={colorPalette}
+            loading={isSubmitting}
+          >
             Entrar
           </Button>
 
